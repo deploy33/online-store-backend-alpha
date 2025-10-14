@@ -10,9 +10,6 @@
 
 import { Sequelize } from "sequelize";
 
-// Make sure you add this to your Render environment variables:
-// DATABASE_URL=postgres://username:password@hostname:port/dbname
-
 const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {
@@ -23,7 +20,13 @@ if (!connectionString) {
 
 const sequelize = new Sequelize(connectionString, {
   dialect: "postgres",
-  logging: false, // optional: turn off SQL logging
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+  logging: false,
 });
 
 export default sequelize;
