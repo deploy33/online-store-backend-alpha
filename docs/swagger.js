@@ -24,6 +24,11 @@ const swaggerDoc = swaggerJSDoc({
       version: "1.0.0",
       description: "API documentation for the online store project",
     },
+    servers: [
+      {
+        url: "https://online-store-backend-alpha.onrender.com/api",
+      },
+    ],
     components: {
       securitySchemes: {
         bearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
@@ -66,7 +71,7 @@ const swaggerDoc = swaggerJSDoc({
     security: [{ bearerAuth: [] }],
     paths,
   },
-  apis: [],
+  apis: ["./routes/*.js", "./docs/paths/**/*.js"],
 });
 
 export function setupSwagger(app) {
