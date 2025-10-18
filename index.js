@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(fileUpload({}));
 app.use("/api", router);
 app.use("/static", express.static(path.resolve(__dirname, "static")));
-setupSwagger(api);
+setupSwagger(app);
 app.use(errorHandlingMiddleware);
 
 const start = async () => {
