@@ -32,7 +32,7 @@ const start = async () => {
     console.log("DB connected");
     await sequelize.sync({ alter: true });
     console.log("Tables synced!");
-    api.listen(PORT, () => console.log(`Launched at ${PORT}`));
+    app.listen(PORT, () => console.log(`Launched at ${PORT}`));
   } catch (e) {
     console.log("Error during startup:", e);
   }
