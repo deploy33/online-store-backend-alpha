@@ -26,7 +26,7 @@ const swaggerDoc = swaggerJSDoc({
     },
     servers: [
       {
-        url: "https://online-store-backend-alpha.onrender.com/api",
+        url: "https://online-store-backend-alpha.onrender.com",
       },
     ],
     components: {
