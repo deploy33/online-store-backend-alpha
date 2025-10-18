@@ -15,14 +15,14 @@ const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 5003;
 
-const api = express();
-api.use(cors());
-api.use(express.json());
-api.use(fileUpload({}));
-api.use("/api", router);
-api.use("/static", express.static(path.resolve(__dirname, "static")));
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(fileUpload({}));
+app.use("/api", router);
+app.use("/static", express.static(path.resolve(__dirname, "static")));
 setupSwagger(api);
-api.use(errorHandlingMiddleware);
+app.use(errorHandlingMiddleware);
 
 const start = async () => {
   try {
