@@ -1,19 +1,23 @@
+import ApiError from "../error/ApiError.js";
 import { verifyToken } from "../utils/verifyToken.js";
 
 export default function checkRoleMiddleware(role) {
     return function (req, res, next) {
-
         try {
             const decoded = verifyToken(req);
 
+            if (!decoded) {
+                return next(ApiError.forbidden("User not authorized"));
+            }
+
             if (decoded.role !== role) {
-                return res.status(403).json({ message: "Not enough rights" });
+                return next(ApiError.forbidden("Not enough rights"));
             }
 
             req.user = decoded;
             next();
         } catch (e) {
-            return res.status(401).json({ message: e.message });
+            return next(ApiError.badRequest(e.message));
         }
     };
 }

@@ -1,6 +1,12 @@
-// import { Sequelize } from "sequelize";
+import { Sequelize } from "sequelize";
 //
-// export default new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+// Локальное подключение
+//
+// export default new Sequelize(
+// process.env.DB_NAME,
+// process.env.DB_USER,
+// process.env.DB_PASSWORD,
+// {
 //   dialect: "postgres",
 //   host: process.env.DB_HOST,
 //   port: process.env.DB_PORT,
@@ -8,8 +14,9 @@
 
 
 
-import { Sequelize } from "sequelize";
-
+//
+// Render-подключение (закомментить при локальном подключении)
+//
 const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {

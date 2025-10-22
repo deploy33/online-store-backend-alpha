@@ -7,6 +7,6 @@ export default function authMiddleware(req, res, next) {
         req.user = decoded;
         next();
     } catch (e) {
-        return res.status(401).json({ message: e.message });
+        return next(ApiError.unauthorized(e.message || "Invalid or expired token"));
     }
 }

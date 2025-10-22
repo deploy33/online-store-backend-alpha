@@ -70,7 +70,7 @@ class userController {
     }
   }
 
-  async getAll(req, res, next) {
+  async getAll(req, res) {
     try {
 
       if (!req.user) {
@@ -134,6 +134,9 @@ class userController {
       if (typeof role !== "undefined") {  //проверка на наличие поля role в теле запроса
         if (req.user.role !== "ADMIN") {
           return next(ApiError.forbidden("Only admin can change roles"));
+        }
+        if (Object.keys(updateData).length === 0) {
+          return next(ApiError.badRequest("No fields to update"));
         }
         updateData.role = role;
       }
